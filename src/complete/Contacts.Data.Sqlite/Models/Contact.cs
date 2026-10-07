@@ -1,0 +1,22 @@
+﻿using System.Diagnostics.CodeAnalysis;
+
+
+namespace Contacts.Data.Sqlite.Models
+{
+    [ExcludeFromCodeCoverage]
+    public class Contact
+    {
+        public int ContactId { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string? MiddleName { get; set; }
+        public string LastName { get; set; } = string.Empty;
+        public string EmailAddress { get; set; } = string.Empty;
+        public DateTime Birthday { get; set; }
+        public DateTime? Anniversary { get; set; }
+        public string? ImageUrl { get; set; }
+
+        public List<Address> Addresses { get; set; } = [];
+        public List<Phone> Phones { get; set; } = [];
+
+    }
+}

@@ -1,0 +1,61 @@
+### List contacts
+GET {{urlRoot}}api/contacts
+Accept: application/json
+
+### Get an existing contact
+GET {{urlRoot}}api/contacts/1
+Accept: application/json
+
+### Get a missing contact
+GET {{urlRoot}}api/contacts/99999999
+Accept: application/json
+
+### Create a contact
+# @name createContact
+POST {{urlRoot}}api/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Deidre",
+  "middleName": "Ann",
+  "lastName": "Guadagno",
+  "emailAddress": "deidre@example.com",
+  "birthday": "1990-01-15"
+}
+
+### Create an invalid contact
+POST {{urlRoot}}api/contacts
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "Guadagno",
+  "emailAddress": "not-an-email",
+  "birthday": "1990-01-15"
+}
+
+### Search contacts
+GET {{urlRoot}}api/contacts/search?firstName=Joseph&lastName=Guadagno
+Accept: application/json
+
+### Get phones for a contact
+GET {{urlRoot}}api/contacts/1/phones
+Accept: application/json
+
+### Get one phone for a contact
+GET {{urlRoot}}api/contacts/1/phones/305
+Accept: application/json
+
+### Get addresses for a contact
+GET {{urlRoot}}api/contacts/1/addresses
+Accept: application/json
+
+### Get one address for a contact
+GET {{urlRoot}}api/contacts/1/addresses/501
+Accept: application/json
+
+### Delete the contact created above
+DELETE {{urlRoot}}api/contacts/{{createContact.response.body.$.contactId}}
+
+### Delete a missing contact
+DELETE {{urlRoot}}api/contacts/99999999

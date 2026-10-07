@@ -1,0 +1,52 @@
+@page
+@model IndexModel
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workshop Tasks</title>
+    <style>
+        :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+        body { max-width: 52rem; margin: 3rem auto; padding: 0 1rem; }
+        h1 { margin-bottom: .25rem; }
+        .subtitle { margin-top: 0; opacity: .75; }
+        .add { display: flex; gap: .5rem; margin: 2rem 0; }
+        .add input { flex: 1; padding: .7rem; }
+        button { padding: .65rem .9rem; cursor: pointer; }
+        ul { list-style: none; padding: 0; }
+        li { display: flex; align-items: center; gap: .75rem; padding: .8rem 0; border-bottom: 1px solid #8885; }
+        li span { flex: 1; }
+        .complete { text-decoration: line-through; opacity: .6; }
+        .validation { color: #d33; }
+    </style>
+</head>
+<body>
+    <h1>Workshop Tasks</h1>
+    <p class="subtitle">Razor Pages + dependency injection + model binding</p>
+
+    <form method="post" asp-page-handler="Add" class="add">
+        <input asp-for="NewItemTitle" placeholder="Add a workshop task" autofocus />
+        <button type="submit">Add</button>
+    </form>
+    <span asp-validation-for="NewItemTitle" class="validation"></span>
+
+    <ul>
+        @foreach (var item in Model.Items)
+        {
+            <li>
+                <form method="post" asp-page-handler="Toggle" asp-route-id="@item.Id">
+                    <button type="submit">@(item.IsComplete ? "Undo" : "Done")</button>
+                </form>
+                <span class="@(item.IsComplete ? "complete" : null)">@item.Title</span>
+                <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        }
+    </ul>
+</body>
+</html>
