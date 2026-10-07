@@ -10,7 +10,7 @@ This repository contains an eight-hour, hands-on workshop for building a control
 ## Prerequisites
 
 * .NET SDK `11.0.100-rc.1.26425.128`
-* Visual Studio 2026 Insiders with the **ASP.NET and web development** workload, or Visual Studio Code with C# Dev Kit
+* Visual Studio 2026 Insiders with the **ASP.NET and web development** workload, or Visual Studio Code with C# Dev Kit, or JetBrains Rider
 * Git
 * A working internet connection for package restore
 
