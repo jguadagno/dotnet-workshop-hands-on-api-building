@@ -37,6 +37,10 @@ The API will depend on `IContactManager`; the remaining interfaces keep persiste
 
 ## Verify the starter solution
 
+***Note***: I recommend that you make a copy of the starter solution (/start) before making any changes, so you can always refer back to the original state if needed.
+
+Open a Terminal or command prompt and navigate your working directory to the copy of the starter solution folder.
+
 Build and test before adding the API:
 
 ```console
@@ -45,6 +49,8 @@ dotnet test Contacts.sln
 ```
 
 ## Create the API project
+
+Choose how you want to create the API project: Visual Studio or .NET CLI.
 
 ### Visual Studio
 
@@ -59,11 +65,12 @@ dotnet test Contacts.sln
    | Authentication | None |
    | Configure for HTTPS | Checked |
    | Enable container support | Unchecked |
-   | Use controllers | Checked |
    | Enable OpenAPI support | Checked |
    | Do not use top-level statements | Unchecked |
+   | Use controllers | Checked |
 
-5. Delete `WeatherForecast.cs` and `Controllers/WeatherForecastController.cs` if your template includes them.
+5. Click **Create** to add the new project to the solution.
+6. Delete `WeatherForecast.cs` and `Controllers/WeatherForecastController.cs` if your template includes them.
 
 ### .NET CLI
 
@@ -78,7 +85,7 @@ Delete the generated WeatherForecast files if present.
 
 ## Add references and Scalar
 
-Add references to the existing projects:
+In a terminal or command prompt, navigate to the root of the API project and add references to the existing projects:
 
 ```console
 dotnet add Contacts.Api\Contacts.Api.csproj reference Contacts.Data\Contacts.Data.csproj
@@ -87,13 +94,15 @@ dotnet add Contacts.Api\Contacts.Api.csproj reference Contacts.Domain\Contacts.D
 dotnet add Contacts.Api\Contacts.Api.csproj reference Contacts.Logic\Contacts.Logic.csproj
 ```
 
+***Note***: You can use the .NET CLI or Visual Studio to add project references.
+
 The .NET 11 Web API template adds `Microsoft.AspNetCore.OpenApi`. Add Scalar for an interactive browser UI:
 
 ```console
 dotnet add Contacts.Api\Contacts.Api.csproj package Scalar.AspNetCore --version 2.17.4
 ```
 
-In `Contacts.Api.csproj`, enable XML documentation and suppress warnings for public members that do not need XML comments:
+In `Contacts.Api.csproj`, enable XML documentation and suppress warnings for public members that do not need XML comments. Place the following within a `<PropertyGroup>`:
 
 ```xml
 <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -204,7 +213,7 @@ app.Run();
 
 `DbContext` is scoped to one request, so the data store, repository, and manager are also scoped. The built-in OpenAPI endpoint and Scalar UI are exposed only in Development.
 
-Update the project profile in `Properties/launchSettings.json` to use the workshop ports and open Scalar:
+Update the `https`project profile in `Properties/launchSettings.json` to use the workshop ports and open Scalar:
 
 ```json
 "launchUrl": "scalar/v1",
@@ -212,6 +221,10 @@ Update the project profile in `Properties/launchSettings.json` to use the worksh
 ```
 
 Set `"launchUrl": "scalar/v1"` on any other profile you plan to use. Run the API with the project profile so the sample requests use the same HTTPS port.
+
+***Note***: Make sure to use the correct launch profile when running the API to ensure the sample requests use the expected ports.
+
+***Note***: You can delete the `http` profile if you only want to use HTTPS.
 
 Build the solution before continuing:
 
