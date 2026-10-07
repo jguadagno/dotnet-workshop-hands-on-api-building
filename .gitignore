@@ -719,6 +719,5 @@ FodyWeavers.xsd
 **/wwwroot/lib
 **/wwwroot/libs
 **/.vscode
-shutdown.ps1
-startup.ps1
 **/logs/
+**/src/working/
